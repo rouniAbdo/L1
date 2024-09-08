@@ -35,6 +35,17 @@ customElements.define('name-component',
      * It adds an event listener to the submit button that changes the text of the h1 element.
      */
     connectedCallback () {
+      this.#submit.addEventListener('click', () => {
+        const name = this.#nameInput.value.trim()
+        const elementToChange = this.shadowRoot.querySelector('h1')
+        if (!name) {
+          elementToChange.textContent = 'Please type your name'
+        } else {
+          elementToChange.textContent = 'Hello, ' + name
+          this.#nameInput.style.display = 'none'
+          this.#submit.style.display = 'none'
+        }
+      })
     }
   }
 )
